@@ -10,6 +10,6 @@ Handling user Inputs and Events.
 Vue.js Methods and Computed Properties.
 Attribute Bindings and dynamic classes.
 
-To see the app:
+<h4>To see the app:</h4>
 1. Download the repository.
 2. Open de index.html in your browser."
