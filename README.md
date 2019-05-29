@@ -8,3 +8,7 @@ The app covers:
 - Handling user Inputs and Events.
 - Vue.js Methods and Computed Properties.
 - Attribute Bindings and dynamic classes."
+
+To see the app:
+1. download the repository.
+2. open de index.html in your browser
