@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <title>Shopping list app</title>
+</head>
+<body>
+    <div class="container-fluid" id="shopping-list">
+        <div class="row">
+            <div class="col-md-8 header">
+                <h1>{{ header.toLocaleUpperCase() }}</h1>
+            </div>
+        </div>
+ 
+        <div class="row">
+            <div v-if="state === 'edit'"class="col-md-6  form add-item-form">
+                <input v-model="newItem" type="text" placeholder="add a new item" @keyup.enter="saveItem">
+                <button class="btn btn-primary float-right" v-bind:disabled="newItem.length === 0" @click="saveItem">Save item</button>
+            </div>
+            <div class="col-md-6 form">
+                <button v-if="state === 'default'" class="btn btn-primary" @click="changeState('edit')">Add item</button>
+                <button v-else class="btn btn-danger float-left" @click="changeState('default')">Cancel</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <ul>
+                <li v-for="item in reversedItems" :class="{strikeout: item.purchased}" @click="togglePurchased(item)">{{ item.label }}</li>
+                </ul>
+                <p v-if="items.length === 0">Nice! You have bought all your items</p>
+        </div>
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        new Vue ({
+            el: '#shopping-list',
+            data: {
+                state: 'default',
+                header: 'TODO app',
+                newItem: '',
+                items: [
+  
+                ]
+            },
+            computed: {
+                reversedItems() {
+                    return this.items.slice(0).reverse();
+                }
+            },
+            methods: {
+                saveItem: function(){
+                    this.items.push({
+                        label: this.newItem,
+                        purchased: false,
+                        },
+                    );
+                    this.newItem = "";
+                },
+                changeState: function(newState){
+                    this.state = newState;
+                    this.newItem = '';
+                },
+                togglePurchased: function(item){
+                    item.purchased = !item.purchased;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
