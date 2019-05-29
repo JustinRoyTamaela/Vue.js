@@ -11,5 +11,5 @@ Vue.js Methods and Computed Properties.
 Attribute Bindings and dynamic classes.
 
 <h4>To see the app:</h4>
-1. Download the repository.
+1. Download the repository. <br>
 2. Open de index.html in your browser."
